@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+    <meta name="theme-color" content="#ffffff" />
+
+    <style>
+      body {
+        margin: 0;
+        /* vh 是view height 既视窗高度的意思，100就是100%占满窗口高度 */
+        height: 100vh;
+        background-color: #eee;
+      }
+       /* * {
+        border: 1px solid #333;
+      } */
+      .flex {
+        display: flex;
+      }
+      /* 占满比例 */
+      .flex1 {
+        flex: 1;
+      }
+      /*现实边界*/
+      .disborder {
+        border: 1px solid #333;
+      }
+      /*盒子中间对齐*/
+      .boxcenter {
+        align-items: center;
+      }
+      /* 竖向 */
+      .column {
+        flex-direction: column;
+      }
+      /* 阴影 */
+      .yinYing {
+        box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+          rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+      }
+      /* 白色背景 */
+      .baiSe {
+        background-color: #fff;
+      }
+      /*橙色背景*/
+      .chengSe {
+        background-color: orange;
+      }
+      /* 上下左右外边距 */
+      .mg8 {
+        margin: 8px;
+      }
+      /* 右外边距 */
+      .mgr8 {
+        margin-right: 8px;
+      }
+      /* 上外边距 */
+      .mgt8 {
+        margin-top: 8px;
+      }
+      /*内容居中*/
+      .textcenter {
+        text-align: center;
+      }
+      /* 小盒子 */
+      .heightset {
+        height: 160px;
+      }
+      /* 小盒子 */
+      .shuJu {
+        height: 60px;
+        width: 90px;
+      }
+      /*代办事项内容上*/
+      .tianchongdatop {
+        height: 30px;
+      }
+      /*代办事项内容下*/
+      .tianchongdabottom {
+        height: 90px;
+      }
+      /* 中间的大盒子 */
+      .lieBiaoXiang {
+        height: 160px;
+      }
+      /* 导航条 */
+      .daoHang {
+        padding: 10px 20px;
+        border-bottom: 1px solid rgb(201, 201, 201);
+        font-size: 14px;
+        color: #666;
+      }
+      .neiRong::-webkit-scrollbar {
+        display: none; /* Chrome Safari */
+      }
+
+      /* 当屏幕宽度小于600px时要改变的css */
+      @media (max-width: 600px) {
+        /* 小屏幕上取消侧边栏，后面学js时会教怎么弹出 */
+        .ceBian {
+          display: none;
+        }
+        /* 内容栏和数据栏flex方向改为竖向 */
+        .neiRong {
+          flex-direction: column;
+        }
+        .shuJuQu {
+          flex-direction: column;
+        }
+        /* 右区加左外边距 */
+        .youQu {
+          margin-left: 8px;
+        }
+        /* 数据块外边距，大小改为自动宽高 */
+        .shuJu {
+          margin: 0 0 8px;
+          flex: auto;
+        }
+      }
+    </style>
+  </head>
+  <body class="flex">
+    <!-- 侧边栏 -->
+    <div
+      style="width: 200px; z-index: 3"
+      class="ceBian flex column baiSe yinYing"
+    >
+      <!-- 侧边头像栏 -->
+      <div
+        style="
+          padding: 10px;
+          align-items: center;
+          justify-content: center;
+          border-bottom: 1px solid #999;
+        "
+        class="flex"
+      >
+        <img
+          alt="logo"
+          src="C:\Users\hybdj\Documents\code\webapp\img\osulogosmall.png"
+          width="40px"
+          height="40px"
+        />
+        <div style="margin-left: 10px">Oregon state university</div>
+      </div>
+      <!-- 导航栏 -->
+      <div class="flex1">
+        <div class="daoHang chengSe">代办事项</div>
+        <div class="daoHang"><a href="C:\Users\hybdj\Documents\code\webapp\course.html">课程列表</a></div>
+        <div class="daoHang">收件箱</div>
+        <div class="daoHang">日历</div>
+        <div class="daoHang">多媒体存储</div>
+      </div>
+      
+    </div>
+    <!-- 主区域 -->
+    <div class="flex flex1 column">
+      <!-- 头部栏 -->
+      <div style="height: 60px; z-index: 2" class="baiSe yinYing"><p class="textcenter">代办事项</p></div>
+      <!-- 内容区 -->
+      <div class="flex flex1 neiRong" style="overflow: auto">
+        <div style="flex: 3" class="flex column mg8">
+          <!-- 列表区，列表数据可以无限增加 -->
+          <div class="flex column">
+            <!-- 列表项 -->
+            <div class="flex lieBiaoXiang mgt8 baiSe yinYing column">
+                <!--外部标题栏-->
+                <div class="flex disborder">今日</div> 
+                <!--内容区域-->
+                <div class="flex">   
+                    <!--左区-->
+                    <div class="flex column yinYing">
+                        <!--左上区域-->
+                        <div class="shuJu disborder">高等数学</div>
+                        <!--左下区域-->
+                        <div class="shuJu disborder">下午4：30</div>
+                    </div>
+                    <!--右区-->
+                    <div class="flex1 column yinYing">
+                        <!--右上上区域-->
+                        <div class="tianchongdatop disborder textcenter">高等数学</div>
+                        <!--右下区域-->
+                        <div class="tianchongdabottom disborder textcenter">期末考试</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex mgt8 baiSe yinYing column">
+                <!--外部标题栏-->
+                <div class="flex disborder">1月2日</div> 
+                <!--内容区域-->
+                <div class="flex">   
+                    <!--左区-->
+                    <div class="flex column yinYing">
+                        <!--左上区域-->
+                        <div class="shuJu disborder">线性代数</div>
+                        <!--左下区域-->
+                        <div class="shuJu disborder">上午9：30</div>
+                    </div>
+                    <!--右区-->
+                    <div class="flex1 column yinYing">
+                        <!--右上上区域-->
+                        <div class="tianchongdatop disborder textcenter">线性代数</div>
+                        <!--右下区域-->
+                        <div class="tianchongdabottom disborder textcenter">作业1</div>
+                    </div>
+                </div>
+                <div class="flex">   
+                    <!--左区-->
+                    <div class="flex column yinYing">
+                        <!--左上区域-->
+                        <div class="shuJu disborder">计算机架构</div>
+                        <!--左下区域-->
+                        <div class="shuJu disborder">下午4：30</div>
+                    </div>
+                    <!--右区-->
+                    <div class="flex1 column yinYing">
+                        <!--右上上区域-->
+                        <div class="tianchongdatop disborder textcenter">计算机架构</div>
+                        <!--右下区域-->
+                        <div class="tianchongdabottom disborder textcenter">测验1</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex lieBiaoXiang mgt8 baiSe yinYing column">
+                <!--外部标题栏-->
+                <div class="flex disborder">1月3日</div> 
+                <!--内容区域-->
+                <div class="flex">   
+                    <!--左区-->
+                    <div class="flex column yinYing">
+                        <!--左上区域-->
+                        <div class="shuJu disborder">体育</div>
+                        <!--左下区域-->
+                        <div class="shuJu disborder">下午4：30</div>
+                    </div>
+                    <!--右区-->
+                    <div class="flex1 column yinYing">
+                        <!--右上上区域-->
+                        <div class="tianchongdatop disborder textcenter">体育</div>
+                        <!--右下区域-->
+                        <div class="tianchongdabottom disborder textcenter">长跑</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex lieBiaoXiang mgt8 baiSe yinYing column">
+                <!--外部标题栏-->
+                <div class="flex disborder">1月4日</div> 
+                <!--内容区域-->
+                <div class="flex">   
+                    <!--左区-->
+                    <div class="flex column yinYing">
+                        <!--左上区域-->
+                        <div class="shuJu disborder">电路设计</div>
+                        <!--左下区域-->
+                        <div class="shuJu disborder">下午4：30</div>
+                    </div>
+                    <!--右区-->
+                    <div class="flex1 column yinYing">
+                        <!--右上上区域-->
+                        <div class="tianchongdatop disborder textcenter">电路设计</div>
+                        <!--右下区域-->
+                        <div class="tianchongdabottom disborder textcenter">网格设计基础</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex mgt8 baiSe yinYing column">
+                <!--外部标题栏-->
+                <div class="flex disborder">1月5日</div> 
+                <!--内容区域-->
+                <div class="flex1 textcenter disborder">无代办事项</div>
+            </div>
+            <div class="flex lieBiaoXiang mgt8 baiSe yinYing column">
+                <!--外部标题栏-->
+                <div class="flex disborder">1月6日</div> 
+                <!--内容区域-->
+                <div class="flex">   
+                    <!--左区-->
+                    <div class="flex column yinYing">
+                        <!--左上区域-->
+                        <div class="shuJu disborder">行为分析</div>
+                        <!--左下区域-->
+                        <div class="shuJu disborder">下午4：30</div>
+                    </div>
+                    <!--右区-->
+                    <div class="flex1 column yinYing">
+                        <!--右上上区域-->
+                        <div class="tianchongdatop disborder textcenter">行为分析</div>
+                        <!--右下区域-->
+                        <div class="tianchongdabottom disborder textcenter">期末考试</div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
